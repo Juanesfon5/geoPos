@@ -1,0 +1,31 @@
+<nav>
+  <ol>
+    <div class="wrapper">
+        <form [formGroup]="messageForm" class= "form-signin" #companyForm="ngForm" >
+          <h2 class="form-signin-header">Geo Localización</h2>  
+          <input type="text" class="form-control" name="User" formControlName="username" placeholder="Usuario"
+            required="">
+            <div *ngIf="submitted && messageForm.controls.username.errors">
+              <div *ngIf="messageForm.controls.username.errors.required">Es obligatorio especificar nombre de usuario</div>
+            </div>
+            <input type="Password" class="form-control" name="Password" formControlName="password" placeholder="Contraseña"
+            required="">
+            <div *ngIf="submitted && messageForm.controls.password.errors">
+              <div *ngIf="messageForm.controls.password.errors.required">Es obligatorio especificar la contraseña</div>
+            </div>
+          <a>
+            <button class="btn btn-primary btn-block" style="margin-bottom:5px"
+            (click)="logClick()">Login</button>
+          </a>
+          <a>
+            <button class="btn btn-primary btn-block" style="margin-bottom:5px"
+            (click)="logClick()">Register</button>
+          </a>
+          <a routerLink="home">
+            <button class="btn btn-primary btn-block" 
+            (click)="logClick(companyForm.form)">Test</button>
+          </a >
+        </form>
+    </div>
+  </ol>
+</nav>
