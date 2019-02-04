@@ -13,11 +13,12 @@ export class HomeComponent implements OnInit {
 
   constructor() { 
     if (navigator)
-    {
-    navigator.geolocation.getCurrentPosition( pos => {
+    { setInterval(()=>{
+      navigator.geolocation.getCurrentPosition( pos => {
         this.lng = +pos.coords.longitude;
         this.lat = +pos.coords.latitude;
       });
+    },3000)
     }
   }
 
