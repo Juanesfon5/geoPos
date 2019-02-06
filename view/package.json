@@ -30,7 +30,8 @@
     "mongoose": "^5.4.9",
     "passport": "^0.4.0",
     "popper.js": "^1.14.7",
-    "rxjs": "~6.3.3",
+    "rxjs": "^6.4.0",
+    "rxjs-compat": "^6.4.0",
     "zone.js": "~0.8.26"
   },
   "devDependencies": {

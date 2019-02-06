@@ -1,0 +1,28 @@
+
+    
+    .form-signin{
+        top: 20px;
+        position: relative;
+        max-width: 500px;
+        padding: 15px 30px 45px;
+        margin: 0 auto;
+        background-color: #fff;
+        border: 3px solid rgba(0,0,0,0.1);
+    }
+
+    
+    /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+    .container {
+        position: relative;
+        transition: margin-left .5s;
+        padding: 150px;
+        align-self: center;
+        right: 90px;
+        
+    }
+    
+    /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+    @media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+    }

@@ -1,0 +1,28 @@
+
+<form [formGroup]="messageForm" class="form-signin">
+  <h1>Registro</h1>
+  
+  <div class="form-group"> <!-- Full Name -->
+		<label for="full_name_id" class="control-label">Nombre</label>
+		<input type="text" formControlName="nombre" class="form-control">
+	</div>
+  
+  <div class="form-group"> <!-- Full Name -->
+		<label for="full_name_id" class="control-label">Usuario</label>
+		<input type="text" formControlName="username" class="form-control">
+    <div *ngIf="submitted && messageForm.controls.username.errors">
+        <div *ngIf="messageForm.controls.username.errors.required">Usuario Requerido</div>
+    </div>
+  </div>
+
+  <div class="form-group"> <!-- Full Name -->
+		<label for="full_name_id" class="control-label">Contraseña</label>
+		<input type="password" formControlName="password" class="form-control">
+    <div *ngIf="submitted && messageForm.controls.password.errors">
+        <div *ngIf="messageForm.controls.password.errors.required">Clave Requerida</div>
+      </div>
+  </div>
+
+  <button class="btn btn-primary btn-block" (click)="thisSubmit()" >Submit</button>
+
+</form>
