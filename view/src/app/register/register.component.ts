@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ServerService } from '../server.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -11,13 +13,13 @@ export class RegisterComponent implements OnInit {
   submitted = false;
   success = false;
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder, private serverService: ServerService, private router: Router) { }
 
   ngOnInit() {
     this.messageForm = this.formBuilder.group({
+      nombre: ['', Validators.required],
       username: ['', Validators.required],
-      password: ['', Validators.required],
-      nombre: ['', Validators.required]
+      password: ['', Validators.required]
     });
   }
 
@@ -36,6 +38,18 @@ export class RegisterComponent implements OnInit {
       }
     }
     this.success = true;
+  }
+
+  register(){
+    let name = this.messageForm.controls['nombre'].value;
+    let user = this.messageForm.controls['username'].value;
+    let pass = this.messageForm.controls['password'].value;
+    this.serverService.addUser(name, user, pass).subscribe(() => {
+      this.router.navigate([""]);
+    });
+    console.log(name);
+    console.log(user);
+    console.log(pass);
   }
 
 }

@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit, Renderer2 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-
+import { ServerService } from '../server.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +18,9 @@ export class LoginComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder,
     private el: ElementRef, 
-    private renderer: Renderer2) { 
+    private renderer: Renderer2,
+    private serverService: ServerService, 
+    private router: Router) { 
   }
 
   ngOnInit() {
@@ -42,8 +45,11 @@ export class LoginComponent implements OnInit {
         user[key] = this.messageForm.controls[key].value;
       }
     }
-    //this.apiService.authenticate(user);
-    this.success = true;
+    //let name = this.messageForm.controls['nombre'].value;
+    let username = this.messageForm.controls['username'].value;
+    let pass = this.messageForm.controls['password'].value;
+    this.serverService.login(username, pass );
+    //this.success = true;
   }
 
 }
