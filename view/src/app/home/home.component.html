@@ -3,14 +3,27 @@
 
 <!-- this creates a google map on the page with the given lat/lng from -->
 <!-- the component as the initial center of the map: -->
-  <div class="row" layout-fill layout-align="center center" style="height:1000px; padding:10px">
-      <div class="col-md-12">
+  <div class="row" style="padding:2%">
           <div class="text-center">
             <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom">
               <agm-marker [latitude]="lat" [longitude]="lng">
                   <agm-info-window>Latitude: {{lat}}, Longitude: {{lng}}</agm-info-window>
               </agm-marker>
             </agm-map>
+          </div>
+  </div>
+  <p>
+    Latitude: {{lat}}, Longitude: {{lng}}
+  </p>
+  <div class="row">
+    <div class="col"> 
+        <button class="btn btn-primary btn-block" (click)="play()" >Start tracking</button>
+    </div>
+    <div class="col">
+        <button class="btn btn-primary btn-block" (click)="stop()" >Stop tracking</button>
+    </div>
+    <div class="col">
+        <button class="btn btn-primary btn-block">Last Route</button>
     </div>
   </div>
 </div>

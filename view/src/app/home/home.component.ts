@@ -10,6 +10,9 @@ export class HomeComponent implements OnInit {
   zoom: number = 14;
   lat: any;
   lng: any;
+  trk: boolean = false;
+  isPlayed: boolean = false;
+  private interval;
 
   constructor() { 
     if (navigator)
@@ -23,6 +26,35 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  play(){
+    this.isPlayed = true;
+    this.test();
+    console.log(this.isPlayed);
+  }
+
+  stop(){
+    this.isPlayed = false;
+    clearInterval(this.interval);
+    //this.test();
+    console.log(this.isPlayed);
+  }
+
+  test(){
+
+
+  this.interval = setInterval(() => {
+      if (this.isPlayed) {
+          console.log('playing');
+      } else {
+          console.log('stopped');
+      }
+  }, 1000);
+  }
+
+  tracking(){
+
   }
 
 }
