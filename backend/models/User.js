@@ -6,7 +6,7 @@ var mongoose = require('mongoose'),
 
 const Schema = mongoose.Schema;
 
-let User = new Schema({
+let UserSchema = new Schema({
     name: {
         type: String,
     },
@@ -20,9 +20,9 @@ let User = new Schema({
         type: String,
         required: true
     }
-});
+}, { collection: 'users' });
 
-User.pre('save', function(next) {
+UserSchema.pre('save', function(next) {
     var user = this;
 
     // only hash the password if it has been modified (or is new)
@@ -43,11 +43,11 @@ User.pre('save', function(next) {
     });
 });
 
-User.methods.comparePassword = function(candidatePassword, cb) {
+UserSchema.methods.comparePassword = function(candidatePassword, cb) {
     bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {
         if (err) return cb(err);
         cb(null,isMatch)
     });
 };
 
-export default mongoose.model('User', User);
+const User = module.exports = mongoose.model('User', UserSchema);

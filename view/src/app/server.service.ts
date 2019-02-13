@@ -20,6 +20,22 @@ export class ServerService {
     return this.http.get(`${this.uri}/geoPos/${id}`);
   }
 
+  getRoutes(){
+    return this.http.get(`${this.uri}/getRoutes`);
+  }
+
+  addRoute(nombre,arrayRutas){
+    console.log("Ruta final");
+    console.log(arrayRutas);
+    const ruta = {
+      name: nombre,
+      locations: arrayRutas
+    };
+    console.log("JSON ruta");
+    console.log(ruta);
+    return this.http.post(`${this.uri}/getRoutes/addRoute`, ruta); 
+  }
+
   addUser(name, userName, password) {
     const user = {
       name: name,

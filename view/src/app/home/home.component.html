@@ -23,7 +23,19 @@
         <button class="btn btn-primary btn-block" (click)="stop()" >Stop tracking</button>
     </div>
     <div class="col">
-        <button class="btn btn-primary btn-block">Last Route</button>
+        <button class="btn btn-primary btn-block" (click)="showRoutes()">Last Route</button>
     </div>
+  </div>
+  <div *ngIf="pressed" class="row" id="cont">
+        <ul>
+          <li *ngFor="let ruta of routes; let i = index;" id ="id ">
+            <span>{{ruta.name}}</span>
+            <ul>
+              <li *ngFor="let n of ruta.locations">
+                Latitud: {{n.lat}}, Longitud: {{n.lng}}
+              </li>
+            </ul>
+          </li>
+        </ul>
   </div>
 </div>

@@ -3,6 +3,7 @@ import cors from 'cors';
 import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 import User from './models/User';
+import Ruta from './models/Ruta';
 
 const app = express();
 const router = express.Router();
@@ -37,6 +38,38 @@ router.route('/geoPos/:id').get((req, res) => {
         }
     })
 });
+
+router.route('/geoPos/routes/:id').get((req, res) => {
+    Ruta.findById(req.params.id, (err, ruta) => {
+        if (err) {
+            console.log(err);
+        } else {
+            return res.json(ruta);
+        }
+    })
+});
+
+router.route('/getRoutes').get((req, res) => {
+    Ruta.find((err, rutas) => {
+        if (err)
+            console.log(err);
+        else
+            res.json(rutas);
+    });
+});
+
+router.route('/getRoutes/addRoute').post((req, res) =>{
+    console.log("Entra en el servicio")
+    let ruta = new Ruta(req.body);
+    ruta.save().then(ruta => {
+        console.log("Si se envió")
+        res.status(200).json({'ruta': 'Added successfully'});
+    })
+    .catch(err => {
+        console.log("Wut")
+        res.status(400).send('Failed to create new ruta');
+    });
+})
 
 router.route('/geoPos/add').post((req, res) => {
         let user = new User(req.body);
