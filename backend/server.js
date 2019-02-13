@@ -59,14 +59,14 @@ router.route('/getRoutes').get((req, res) => {
 });
 
 router.route('/getRoutes/addRoute').post((req, res) =>{
-    console.log("Entra en el servicio")
+    
     let ruta = new Ruta(req.body);
     ruta.save().then(ruta => {
-        console.log("Si se envió")
+        
         res.status(200).json({'ruta': 'Added successfully'});
     })
     .catch(err => {
-        console.log("Wut")
+        
         res.status(400).send('Failed to create new ruta');
     });
 })
