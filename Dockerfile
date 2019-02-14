@@ -1,0 +1,11 @@
+FROM node:11
+
+ARG PORT=3000
+ENV PORT $PORT
+
+WORKDIR /nodeApp
+COPY . ./
+
+RUN npm install
+
+EXPOSE 3000

@@ -12,7 +12,7 @@ app.use(cors());
 app.use(bodyParser.json());
 
 
-mongoose.connect("mongodb://localhost:27017/geoPos", { useNewUrlParser: true });
+mongoose.connect("mongodb://mongo-server:27017/geoPos", { useNewUrlParser: true });
 const connection = mongoose.connection;
 
 connection.once('open', () => {
