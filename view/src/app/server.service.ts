@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 })
 export class ServerService {
 
-  uri = 'http://localhost:4000';
+  uri = 'http://localhost:3000';
 
   constructor(private http: HttpClient, private router: Router) {}
 
