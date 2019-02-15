@@ -1,5 +1,4 @@
-var mongoose = require('mongoose'),
-    Schema = mongoose.Schema
+var mongoose = require('mongoose')
 
 const Schema = mongoose.Schema;
 

@@ -11,17 +11,21 @@ services:
       - "443:443"
     depends_on:
       - nodeapp
+   
+  angular:
+    build: view
+    ports: 
+      - "4200:4200"
   nodeapp:
-    container_name: nodeapp
     restart: always
-    build: .
+    build: backend
     ports:
       - "3000:3000"
     depends_on:
       - mongo-server
   mongo-server:
-    container_name: mongo-server
-    image: mongo:latest
+    container_name: mongo-servers
+    image: mongo
     volumes:
       - ./data:/data/db
     ports:

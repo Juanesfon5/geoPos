@@ -1,12 +1,11 @@
-import User from './models/User';
-import Ruta from './models/Ruta';
+var User = require('./models/User');
+var Ruta = require('./models/Ruta');
 
 var mongoose = require('mongoose')
 var cors = require('cors')
-var bodyParser = require('bodyParser')
-var mongoose = require('mongoose')
-var mongoose = require('mongoose')
-
+var bodyParser = require('body-parser')
+const http = require('http');
+const express = require('express');
 
 const app = express();
 const router = express.Router();
@@ -14,8 +13,9 @@ const router = express.Router();
 app.use(cors());
 app.use(bodyParser.json());
 
+const dbHost = 'mongodb://mongo-servers:27017/geoPos';
 
-mongoose.connect("mongodb://mongo-server:27017/geoPos", { useNewUrlParser: true });
+mongoose.connect(dbHost, { useNewUrlParser: true });
 const connection = mongoose.connection;
 
 connection.once('open', () => {
@@ -136,5 +136,10 @@ router.route('/geoPos/delete/:id').get((req, res) => {
     });
 });
 
+const port = process.env.PORT || '3000';
+app.set('port', port);
+
+const server = http.createServer(app);
+
 app.use('/', router);
-app.listen(3000, () => console.log(`Express server running on port 3000`));
+server.listen(port, () => console.log(`Express server running on port:${port}`));
