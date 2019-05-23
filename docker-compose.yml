@@ -1,32 +1,22 @@
-version: '3'
+version: '2' # specify docker-compose version
+
+# Define the services/containers to be run
 services:
-  nginx:
-    container_name: nginx-server
-    image: nginx
-    volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf:ro
-      - ./ssl:/etc/nginx/ssl
+  angular: # name of the first service
+    build: view # specify the directory of the Dockerfile
     ports:
-      - "80:80"
-      - "443:443"
-    depends_on:
-      - nodeapp
-   
-  angular:
-    build: view
-    ports: 
-      - "4200:4200"
-  nodeapp:
-    restart: always
-    build: backend
+      - "4200:4200" # specify port forewarding
+    volumes: 
+      - ./view:/app
+
+  express: #name of the second service
+    build: backend # specify the directory of the Dockerfile
     ports:
-      - "3000:3000"
-    depends_on:
-      - mongo-server
-  mongo-server:
-    container_name: mongo-servers
-    image: mongo
-    volumes:
-      - ./data:/data/db
+      - "3000:3000" #specify ports forewarding
+    links:
+      - database
+
+  database: # name of the third service
+    image: mongo # specify image to build container from
     ports:
-      - "27017:27017"
+      - "27017:27017" # specify port forewarding

@@ -1,11 +1,13 @@
-var User = require('./models/User');
-var Ruta = require('./models/Ruta');
-
+// Dependencias
 var mongoose = require('mongoose')
 var cors = require('cors')
 var bodyParser = require('body-parser')
 const http = require('http');
 const express = require('express');
+
+// Modelos
+var User = require('./models/User');
+var Ruta = require('./models/Ruta');
 
 const app = express();
 const router = express.Router();
@@ -13,7 +15,7 @@ const router = express.Router();
 app.use(cors());
 app.use(bodyParser.json());
 
-const dbHost = 'mongodb://mongo-servers:27017/geoPos';
+const dbHost = 'mongodb://database/geoPos';
 
 mongoose.connect(dbHost, { useNewUrlParser: true });
 const connection = mongoose.connection;

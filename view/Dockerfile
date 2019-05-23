@@ -1,15 +1,23 @@
-FROM node:11
+# Create image based on the official Node 10 image from dockerhub
+FROM node:10
 
-RUN mkdir -p usr/src/app
+# Create a directory where our app will be placed
+RUN mkdir -p /app
 
-WORKDIR /usr/src/app
+# Change directory so that our commands run inside this new directory
+WORKDIR /app
 
-COPY package.json /usr/src/app
+# Copy dependency definitions
+COPY package*.json /app/
 
+# Install dependecies
 RUN npm install
 
-COPY . /usr/src/app
+# Get all the code needed to run the app
+COPY . /app/
 
+# Expose the port the app runs in
 EXPOSE 4200
 
-CMD ["npm","start"]
+# Serve the app
+CMD ["npm", "start"]
